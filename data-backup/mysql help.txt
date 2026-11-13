@@ -1,0 +1,424 @@
+[userid] => 1
+    [transid] => 127
+    [crimeName] => Test Crime
+    [crimeDetails] => Test Crime Details
+    [complaintNumber] => 23223
+    [crimeSDate] => 2026-10-26T12:13
+    [crimeEDate] => 2026-10-26T13:13
+    [crimePlace] => Prabhat Talkies
+    [crimeLang] => 
+    [policeStation] => 1
+    [crimeType] => Riot
+    [crimeLaw] => BNS 123
+    [crimeArrested] => 2
+    [crimePunishment] => 2 Days
+    [crimeESaksh] => Yes
+    [criminalHistory] => Same Riot History
+    [preventiveAction] => BNS 23
+    [otherSection] => 56
+    [otherLaw] => 56
+    [crimeRegDate] => 2026-10-26T18:14
+    
+    CREATE TABLE `criminal_record` (
+  `cmd_id` int(10) NOT NULL,
+  `cmd_name` varchar(100) NOT NULL,
+  `cmd_details` varchar(100) NOT NULL,
+  `cmd_complaint_number` varchar(20) NOT NULL,
+  `cmd_start_date` datetime NOT NULL,
+  `cmd_end_date` datetime NOT NULL,
+  `cmd_place` varchar(100) NOT NULL,    
+  `cmd_lang` varchar(100) NOT NULL,      
+  `cmd_state` int(10) NOT NULL,
+  `cmd_dist` int(10) NOT NULL,
+  `cmd_police_station` int(10) NOT NULL,
+  `cmd_type` varchar(100) NOT NULL,
+  `cmd_law` varchar(100) NOT NULL,
+  `cmd_arrested` int(10) NOT NULL,
+  `cmd_punishment` varchar(100) NOT NULL,
+  `cmd_e_saksh` varchar(100) NOT NULL,
+  `cmd_history` varchar(100) NOT NULL,
+  `cmd_preventive` varchar(100) NOT NULL,
+  `cmd_other_serction` varchar(100) NOT NULL,
+  `cmd_other_law` varchar(100) NOT NULL,
+  `cmd_crimereg_date` datetime NOT NULL,
+  `cmd_createdby` int(10) NOT NULL,
+  `cmd_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `cmd_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `cmd_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`cmd_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+
+CREATE TABLE `missing_record_cmd` (
+  `mr_id` int(10) NOT NULL AUTO_INCREMENT,
+  `mr_state` int(10) NOT NULL,
+  `mr_dist` int(10) NOT NULL,
+  `mr_ps` int(10) NOT NULL,
+  `mr_count` int(10) NOT NULL,
+  `mr_number` varchar(20) NOT NULL,
+  `mr_details` varchar(100) NOT NULL,
+  `mr_officer` varchar(100) NOT NULL,
+  `mr_reg_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `mr_createdby` int(10) NOT NULL,
+  `mr_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `mr_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `mr_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`mr_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+
+CREATE TABLE `death_record_cmd` (
+  `dr_id` int(10) NOT NULL AUTO_INCREMENT,
+  `dr_state` int(10) NOT NULL,
+  `dr_dist` int(10) NOT NULL,
+  `dr_ps` int(10) NOT NULL,
+  `dr_details` varchar(100) NOT NULL,
+  `dr_reason` varchar(100) NOT NULL,
+  `dr_gender` varchar(20) NOT NULL,
+  `dr_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `dr_createdby` int(10) NOT NULL,
+  `dr_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `dr_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `dr_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`dr_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `yesterday_arrest_record_cmd` (
+  `yr_id` int(10) NOT NULL AUTO_INCREMENT,
+  `yr_state` int(10) NOT NULL,
+  `yr_dist` int(10) NOT NULL,
+  `yr_ps` int(10) NOT NULL,
+  `yr_fir` varchar(100) NOT NULL,
+  `yr_law` text NOT NULL,
+  `yr_count` int(100) NOT NULL,
+  `yr_arrest` int(100) NOT NULL,
+  `yr_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `yr_createdby` int(10) NOT NULL,
+  `yr_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `yr_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `yr_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`yr_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+sJailReleaseRecordCMD
+
+CREATE TABLE `jail_release_cmd` (
+  `jr_id` int(10) NOT NULL AUTO_INCREMENT,
+  `jr_state` int(10) NOT NULL,
+  `jr_dist` int(10) NOT NULL,
+  `jr_ps` int(10) NOT NULL,
+  `jr_fir` varchar(100) NOT NULL,
+  `jr_law` text NOT NULL,
+  `jr_name` text NOT NULL,
+  `jr_release_date` date NOT NULL,
+  `jr_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `jr_createdby` int(10) NOT NULL,
+  `jr_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `jr_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `jr_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`jr_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+sJMFCRecordCMD
+
+CREATE TABLE `jmfc_court_cmd` (
+  `jm_id` int(10) NOT NULL AUTO_INCREMENT,
+  `jm_state` int(10) NOT NULL,
+  `jm_dist` int(10) NOT NULL,
+  `jm_ps` int(10) NOT NULL,
+  `jm_closed` int(10) NOT NULL,
+  `jm_prof` int(10) NOT NULL,
+  `jm_release` int(10) NOT NULL,
+  `jm_compromis` int(10) NOT NULL,
+  `jm_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `jm_createdby` int(10) NOT NULL,
+  `jm_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `jm_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `jm_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`jm_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+
+CREATE TABLE `ses_court_cmd` (
+  `se_id` int(10) NOT NULL AUTO_INCREMENT,
+  `se_state` int(10) NOT NULL,
+  `se_dist` int(10) NOT NULL,
+  `se_ps` int(10) NOT NULL,
+  `se_closed` int(10) NOT NULL,
+  `se_prof` int(10) NOT NULL,
+  `se_release` int(10) NOT NULL,
+  `se_compromis` int(10) NOT NULL,
+  `se_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `se_createdby` int(10) NOT NULL,
+  `se_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `se_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `se_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`se_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `juvenile_court_cmd` (
+  `jv_id` int(10) NOT NULL AUTO_INCREMENT,
+  `jv_state` int(10) NOT NULL,
+  `jv_dist` int(10) NOT NULL,
+  `jv_ps` int(10) NOT NULL,
+  `jv_closed` int(10) NOT NULL,
+  `jv_prof` int(10) NOT NULL,
+  `jv_release` int(10) NOT NULL,
+  `jv_compromis` int(10) NOT NULL,
+  `jv_per` float(10) NOT NULL,
+  `jv_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `jv_createdby` int(10) NOT NULL,
+  `jv_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `jv_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `jv_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`jv_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `division` (
+  `div_id` int(10) NOT NULL AUTO_INCREMENT,
+  `div_name` varchar(100) NOT NULL,
+  `div_email` varchar(100) NOT NULL,
+  `div_dist_id` int(10) NOT NULL,
+  `div_state_id` int(10) NOT NULL,
+  `div_div_id` int(10) NOT NULL,
+  `div_createdby` int(10) NOT NULL,
+  `div_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `div_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `div_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`div_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+sSumRecordCMD
+
+CREATE TABLE `summons_status_cmd` (
+  `ss_id` int(10) NOT NULL AUTO_INCREMENT,
+  `ss_state` int(10) NOT NULL,
+  `ss_dist` int(10) NOT NULL,
+  `ss_ps` int(10) NOT NULL,
+  `ss_pre_balance` int(10) NOT NULL,
+  `ss_current` int(10) NOT NULL,  
+  `ss_total` int(10) NOT NULL,  
+  `ss_summoned` int(10) NOT NULL,
+  `ss_not_summoned` int(10) NOT NULL,
+  `ss_post` int(10) NOT NULL,
+  `ss_balance` int(10) NOT NULL,
+  `ss_per` float NOT NULL,
+  `ss_per_balance` float NOT NULL,
+  `ss_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `ss_createdby` int(10) NOT NULL,
+  `ss_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `ss_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ss_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ss_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+sWarRecordCMD
+
+CREATE TABLE `warrant_status_cmd` (
+  `ws_id` int(10) NOT NULL AUTO_INCREMENT,
+  `ws_state` int(10) NOT NULL,
+  `ws_dist` int(10) NOT NULL,
+  `ws_ps` int(10) NOT NULL,
+  `ws_pre_balance` int(10) NOT NULL,
+  `ws_current` int(10) NOT NULL,  
+  `ws_total` int(10) NOT NULL,  
+  `ws_summoned` int(10) NOT NULL,
+  `ws_not_summoned` int(10) NOT NULL,
+  `ws_post` int(10) NOT NULL,
+  `ws_balance` int(10) NOT NULL,
+  `ws_per` float NOT NULL,
+  `ws_per_balance` float NOT NULL,
+  `ws_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `ws_createdby` int(10) NOT NULL,
+  `ws_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `ws_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ws_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ws_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+CREATE TABLE `complaints_application_cmd` (
+  `ca_id` int(10) NOT NULL AUTO_INCREMENT,
+  `ca_state` int(10) NOT NULL,
+  `ca_dist` int(10) NOT NULL,
+  `ca_ps` int(10) NOT NULL,
+  `ca_one_year` int(10) NOT NULL,
+  `ca_six_month` int(10) NOT NULL,
+  `ca_three_month` int(10) NOT NULL,
+  `ca_less_three_month` int(10) NOT NULL,
+  `ca_total` int(10) NOT NULL,
+  `ca_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `ca_createdby` int(10) NOT NULL,
+  `ca_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `ca_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ca_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ca_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+
+CREATE TABLE `passport_application_cmd` (
+  `pa_id` int(10) NOT NULL AUTO_INCREMENT,
+  `pa_state` int(10) NOT NULL,
+  `pa_dist` int(10) NOT NULL,
+  `pa_ps` int(10) NOT NULL,
+  `pa_seven_days` int(10) NOT NULL,
+  `pa_fifteen_days` int(10) NOT NULL,
+  `pa_one_month` int(10) NOT NULL,
+  `pa_total_waiting` int(10) NOT NULL,
+  `pa_total_received` int(10) NOT NULL,
+  `pa_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `pa_createdby` int(10) NOT NULL,
+  `pa_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `pa_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `pa_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`pa_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `character_verification_cmd` (
+  `cv_id` int(10) NOT NULL AUTO_INCREMENT,
+  `cv_state` int(10) NOT NULL,
+  `cv_dist` int(10) NOT NULL,
+  `cv_ps` int(10) NOT NULL,
+  `cv_rec_last_month` int(10) NOT NULL,
+  `cv_pend` int(10) NOT NULL,
+  `cv_total_rec_till_last_month` int(10) NOT NULL,
+  `cv_total_op_till_last_month` int(10) NOT NULL,
+  `cv_pend_last_ft` int(10) NOT NULL,
+  `cv_pend_last_month` int(10) NOT NULL,
+  `cv_per_last_month` int(10) NOT NULL,
+  `cv_rec_cur_month` int(10) NOT NULL,
+  `cv_op_cur_month` int(10) NOT NULL,
+  `cv_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `cv_createdby` int(10) NOT NULL,
+  `cv_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `cv_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `cv_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`cv_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `character_verification_notified_cmd` (
+  `cn_id` int(10) NOT NULL AUTO_INCREMENT,
+  `cn_name` varchar(100) NOT NULL,
+  `cn_dura` int(10) NOT NULL,
+  `cn_total_rec` int(10) NOT NULL,
+  `cn_total_op` int(10) NOT NULL,
+  `cn_total_pend` int(10) NOT NULL,
+  `cn_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `cn_createdby` int(10) NOT NULL,
+  `cn_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `cn_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `cn_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`cn_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `office_name_cmd` (
+  `on_id` int(10) NOT NULL AUTO_INCREMENT,
+  `on_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `on_name_mr` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `on_email` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `on_dist_id` int(10) NOT NULL,
+  `on_state_id` int(10) NOT NULL,
+  `on_createdby` int(10) NOT NULL,
+  `on_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `on_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `on_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`on_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `apale_sarkar_complaint_cmd` (
+  `as_id` int(10) NOT NULL AUTO_INCREMENT,
+  `as_state` int(10) NOT NULL,
+  `as_dist` int(10) NOT NULL,
+  `as_on_id` int(10) NOT NULL,
+  `as_pend_last_month` int(10) NOT NULL,
+  `as_comp_today` int(10) NOT NULL,
+  `as_total` int(10) NOT NULL,
+  `as_op_today` int(10) NOT NULL,
+  `as_pend_today` int(10) NOT NULL,
+  `as_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `as_createdby` int(10) NOT NULL,
+  `as_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `as_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `as_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`as_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `pg_portal_cmd` (
+  `pg_id` int(10) NOT NULL AUTO_INCREMENT,
+  `pg_state` int(10) NOT NULL,
+  `pg_dist` int(10) NOT NULL,
+  `pg_on_id` int(10) NOT NULL,
+  `pg_rec_last_month` int(10) NOT NULL,
+  `pg_pend` int(10) NOT NULL,
+  `pg_total_rec_till_last_month` int(10) NOT NULL,
+  `pg_total_op_till_last_month` int(10) NOT NULL,
+  `pg_pend_last_ft` int(10) NOT NULL,
+  `pg_pend_last_month` int(10) NOT NULL,
+  `pg_per_last_month` int(10) NOT NULL,
+  `pg_rec_cur_month` int(10) NOT NULL,
+  `pg_op_cur_month` int(10) NOT NULL,
+  `pg_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `pg_createdby` int(10) NOT NULL,
+  `pg_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `pg_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `pg_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`pg_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `pg_portal_cmd` (
+  `pg_id` int(10) NOT NULL AUTO_INCREMENT,
+  `pg_state` int(10) NOT NULL,
+  `pg_dist` int(10) NOT NULL,
+  `pg_on_id` int(10) NOT NULL,
+  `pg_rec_last_month` int(10) NOT NULL,
+  `pg_pend` int(10) NOT NULL,
+  `pg_total_rec_till_last_month` int(10) NOT NULL,
+  `pg_total_op_till_last_month` int(10) NOT NULL,
+  `pg_pend_last_ft` int(10) NOT NULL,
+  `pg_pend_last_month` int(10) NOT NULL,
+  `pg_per_last_month` int(10) NOT NULL,
+  `pg_rec_cur_month` int(10) NOT NULL,
+  `pg_op_cur_month` int(10) NOT NULL,
+  `pg_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `pg_createdby` int(10) NOT NULL,
+  `pg_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `pg_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `pg_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`pg_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `itsso_cmd` (
+  `it_id` int(10) NOT NULL AUTO_INCREMENT,
+  `it_state` int(10) NOT NULL,
+  `it_dist` int(10) NOT NULL,
+  `it_ps` int(10) NOT NULL,
+  `it_rec_last_month` int(10) NOT NULL,
+  `it_pend` int(10) NOT NULL,
+  `it_total_rec_till_last_month` int(10) NOT NULL,
+  `it_total_op_till_last_month` int(10) NOT NULL,
+  `it_pend_last_ft` int(10) NOT NULL,
+  `it_pend_last_month` int(10) NOT NULL,
+  `it_per_last_month` int(10) NOT NULL,
+  `it_rec_cur_month` int(10) NOT NULL,
+  `it_op_cur_month` int(10) NOT NULL,
+  `it_reg_date` date NOT NULL DEFAULT current_timestamp(),
+  `it_createdby` int(10) NOT NULL,
+  `it_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `it_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `it_modifiedon` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`cv_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
