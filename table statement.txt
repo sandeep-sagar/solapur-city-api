@@ -1,0 +1,213 @@
+DROP TABLE IF EXISTS `crime`;
+
+CREATE TABLE `crime` (
+  `crime_id` int(10) NOT NULL AUTO_INCREMENT,
+  `crime_law` int(10) NOT NULL,
+  `crime_section` int(10) NOT NULL,
+  `crime_cr_id` int(10) NOT NULL,
+  `crime_createdby` int(10) NOT NULL,
+  `crime_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `crime_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `crime_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`crime_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+ALTER TABLE `crime` DISCARD TABLESPACE;
+
+
+CREATE TABLE `crime_status` (
+  `cr_id` int(10) NOT NULL AUTO_INCREMENT,
+  `cr_name` varchar(20) NOT NULL,
+  `cr_createdby` int(10) NOT NULL,
+  `cr_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `cr_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `cr_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`cr_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+
+ALTER TABLE detect DISCARD TABLESPACE;
+ALTER TABLE district DISCARD TABLESPACE;
+ALTER TABLE law DISCARD TABLESPACE;
+ALTER TABLE notice DISCARD TABLESPACE;
+ALTER TABLE police_station DISCARD TABLESPACE;
+ALTER TABLE preventive_head DISCARD TABLESPACE;
+ALTER TABLE religion DISCARD TABLESPACE;
+ALTER TABLE section DISCARD TABLESPACE;
+ALTER TABLE special_event_crime DISCARD TABLESPACE;
+ALTER TABLE state DISCARD TABLESPACE;
+ALTER TABLE status DISCARD TABLESPACE;
+
+ALTER TABLE detect IMPORT TABLESPACE;
+ALTER TABLE district IMPORT TABLESPACE;
+ALTER TABLE law IMPORT TABLESPACE;
+ALTER TABLE notice IMPORT TABLESPACE;
+ALTER TABLE police_station IMPORT TABLESPACE;
+ALTER TABLE preventive_head IMPORT TABLESPACE;
+ALTER TABLE religion IMPORT TABLESPACE;
+ALTER TABLE section IMPORT TABLESPACE;
+ALTER TABLE special_event_crime IMPORT TABLESPACE;
+ALTER TABLE state IMPORT TABLESPACE;
+ALTER TABLE status IMPORT TABLESPACE;
+
+CREATE TABLE criminal_record ( 
+cr_id int(10) NOT NULL AUTO_INCREMENT,
+cr_criminal_photo varchar(100) NOT NULL,
+cr_crime_name varchar(100) NOT NULL,
+cr_crime_details varchar(100) NOT NULL,
+cr_complaint_number varchar(20) NOT NULL,
+cr_crime_date datetime NOT NULL,
+cr_crimereg_date datetime NOT NULL,
+cr_crime_state int(10) NOT NULL,
+cr_crimes_dist int(10) NOT NULL,
+cr_police_station int(10) NOT NULL,
+cr_criminal_name varchar(100) NOT NULL,
+cr_criminal_dob date NOT NULL,
+cr_criminal_mo int(10) NOT NULL,
+cr_criminal_religion int(10) NOT NULL,
+cr_criminal_religion_other varchar(100) NOT NULL,
+cr_criminal_cast varchar(20) NOT NULL,
+cr_criminal_add varchar(100) NOT NULL,
+cr_criminal_state int(10) NOT NULL,
+cr_criminal_dist int(10) NOT NULL,
+cr_criminal_pincode int(10) NOT NULL,
+cr_crime_status int(10) NOT NULL,
+cr_crime_detect int(10) NOT NULL,
+cr_crime_notice int(10) NOT NULL,
+cr_investigator varchar(20) NOT NULL,
+cr_preventive_info int(10) NOT NULL,
+cr_preventive_head int(10) NOT NULL,
+cr_special_event_crime int(10) NOT NULL,
+cr_section int(10) NOT NULL,
+cr_createdby int(10) NOT NULL,
+cr_status enum('active','inactive') NOT NULL DEFAULT 'active',
+cr_createdon timestamp NOT NULL DEFAULT current_timestamp(),
+cr_modifiedon timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+PRIMARY KEY (cr_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+
+CREATE TABLE `detect` (
+  `dt_id` int(10) NOT NULL AUTO_INCREMENT,
+  `dt_name` varchar(20) NOT NULL,
+  `dt_createdby` int(10) NOT NULL,
+  `dt_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `dt_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `dt_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`dt_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `district` (
+  `dist_id` int(10) NOT NULL AUTO_INCREMENT,
+  `dist_name` varchar(20) NOT NULL,
+  `dist_state_id` int(10) NOT NULL,
+  `dist_createdby` int(10) NOT NULL,
+  `dist_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `dist_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `dist_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`dt_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+
+ALTER TABLE law DISCARD TABLESPACE;
+ALTER TABLE law IMPORT TABLESPACE;
+CREATE TABLE `law` (
+  `law_id` int(10) NOT NULL AUTO_INCREMENT,
+  `law_name` varchar(20) NOT NULL,
+  `law_short` varchar(10) NOT NULL,
+  `law_createdby` int(10) NOT NULL,
+  `law_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `law_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `law_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`law_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `notice` (
+  `notice_id` int(10) NOT NULL AUTO_INCREMENT,
+  `notice_name` varchar(100) NOT NULL,
+  `notice_link` varchar(100) NOT NULL,
+  `notice_createdby` int(10) NOT NULL,
+  `notice_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `notice_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `notice_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`notice_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `police_station` (
+  `ps_id` int(10) NOT NULL AUTO_INCREMENT,
+  `ps_name` varchar(100) NOT NULL,
+  `ps_dist_id` int(10) NOT NULL,
+  `ps_state_id` int(10) NOT NULL,
+  `ps_createdby` int(10) NOT NULL,
+  `ps_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `ps_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ps_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`ps_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `preventive_head` (
+  `ph_id` int(10) NOT NULL AUTO_INCREMENT,
+  `ph_name` varchar(20) NOT NULL,
+  `ph_createdby` int(10) NOT NULL,
+  `ph_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `ph_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ph_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`ph_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `religion` (
+  `rl_id` int(10) NOT NULL AUTO_INCREMENT,
+  `rl_name` varchar(20) NOT NULL,
+  `rl_createdby` int(10) NOT NULL,
+  `rl_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `rl_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `rl_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`rl_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `section` (
+  `section_id` int(10) NOT NULL AUTO_INCREMENT,
+  `section_no` int(10) NOT NULL,
+  `section_name` varchar(100) NOT NULL,
+  `section_punishment` varchar(20) NOT NULL,
+  `section_cognizance` varchar(20) NOT NULL,
+  `section_bail` varchar(20) NOT NULL,
+  `section_triableby` varchar(20) NOT NULL,
+  `section_law_id` int(10) NOT NULL,
+  `section_createdby` int(10) NOT NULL,
+  `section_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `section_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `section_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`section_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `special_event_crime` (
+  `sec_id` int(10) NOT NULL AUTO_INCREMENT,
+  `sec_name` varchar(100) NOT NULL,
+  `sec_createdby` int(10) NOT NULL,
+  `sec_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `sec_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `sec_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`sec_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+
+CREATE TABLE `state` (
+  `state_id` int(10) NOT NULL AUTO_INCREMENT,
+  `state_name` varchar(100) NOT NULL,
+  `state_createdby` int(10) NOT NULL,
+  `state_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `state_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `state_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`state_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `status` (
+  `st_id` int(10) NOT NULL AUTO_INCREMENT,
+  `st_name` varchar(100) NOT NULL,
+  `st_createdby` int(10) NOT NULL,
+  `st_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `st_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `st_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`st_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci

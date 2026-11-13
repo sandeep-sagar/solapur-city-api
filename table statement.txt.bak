@@ -1,0 +1,31 @@
+DROP TABLE IF EXISTS `crime`;
+
+CREATE TABLE `crime` (
+  `crime_id` int(10) NOT NULL AUTO_INCREMENT,
+  `crime_law` int(10) NOT NULL,
+  `crime_section` int(10) NOT NULL,
+  `crime_cr_id` int(10) NOT NULL,
+  `crime_createdby` int(10) NOT NULL,
+  `crime_status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `crime_createdon` timestamp NOT NULL DEFAULT current_timestamp(),
+  `crime_modifiedon` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`crime_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+ALTER TABLE `crime` DISCARD TABLESPACE;
+
+
+
+
+CREATE TABLE `crime_status` (
+  cr_id int(10) NOT NULL AUTO_INCREMENT,
+  cr_name int(10) NOT NULL,
+  cr_createdby int(10) NOT NULL,
+  cr_status enum('active','inactive') NOT NULL DEFAULT 'active',
+  cr_createdon timestamp NOT NULL DEFAULT current_timestamp(),
+  cr_modifiedon timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (cr_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+ALTER TABLE `crime` DISCARD TABLESPACE;
+ALTER TABLE `crime` IMPORT TABLESPACE;
